@@ -1,5 +1,5 @@
 const btnLog = document.querySelector("#btnLog")
-const url = "http://709b-186-144-129-108.ngrok.io"
+const url = "https://709b-186-144-129-108.ngrok.io"
 
 btnLog.addEventListener("click", (e) => {
     e.preventDefault()
