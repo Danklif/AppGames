@@ -16,19 +16,17 @@ btnLogout.addEventListener("click", (e) => {
 
 async function loadGames() {
     const allGames = await (await fetch("https://danklif.github.io/AppGames/public/games.json")).json()
-    const ownedIds = await (await fetch(url + "/users/owned_games?id=" + idSession, {
-        mode:"cors"
-    })).json()
+    const ownGames = await (await fetch(url + "/users/ownedgames?id_user=" + idSession, {mode:"cors"})).json()
 
-    const ownedGames = allGames.filter(game => {
-        return ownedIds.map(game => {
+    const gameList = allGames.filter(game => {
+        return ownGames.map(game => {
             return game.id_game
         }).includes(parseInt(game.id))
     })
 
     let template = ``
 
-    ownedGames.forEach(e => {
+    gameList.forEach(e => {
         template += 
         `
         <tr>

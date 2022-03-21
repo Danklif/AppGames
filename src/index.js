@@ -3,30 +3,30 @@ const btnLog = document.querySelector("#btnLog")
 
 btnLog.addEventListener("click", (e) => {
     e.preventDefault()
-    const inUser = document.querySelector("#inUser")
-    const inPass = document.querySelector("#inPass")
+    const username = document.querySelector("#inUser").value
+    const password = document.querySelector("#inPass").value
     if (!inUser.value || !inPass.value) {
         alert("Los valores están vacíos")
         return
     }
     const user = JSON.stringify({
-        name:inUser.value, 
-        pass:inPass.value
+        username:username, 
+        password:password
     })
     signIn(user)
 })
 
 btnReg.addEventListener("click", (e) => {
     e.preventDefault()
-    const inUser = document.querySelector("#sbUser")
-    const inPass = document.querySelector("#sbPass")
-    if (!inUser.value || !inPass.value) {
+    const username = document.querySelector("#sbUser").value
+    const password = document.querySelector("#sbPass").value
+    if (!inUser || !inPass) {
         alert("Los valores están vacíos")
         return
     }
     const user = JSON.stringify({
-        name:inUser.value, 
-        pass:inPass.value
+        username:username, 
+        password:password
     })
     signUp(user)
 })
