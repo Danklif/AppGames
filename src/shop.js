@@ -27,6 +27,7 @@ async function loadGames() {
     })
 
     let template = ``
+    let usertype = await getUserType(idSession)
 
     notOwnedGames.forEach(e => {
         template += 
@@ -35,7 +36,7 @@ async function loadGames() {
             <td>${e.name}</td>
             <td>${e.launch_date}</td>
             <td>${e.desc}</td>
-            <td>${e.value}</td>
+            <td>${e.value - (e.value * calculateValue(parseInt(usertype[0].user_type)))}</td>
             <td>${e.company}</td>
             <td><button id="btnComprar-${e.id}">Comprar</button></td>
         </tr>
@@ -46,7 +47,9 @@ async function loadGames() {
 }
 
 tableGames.addEventListener("click", (e) => {
-    buyGames(parseInt(e.target.id.split("-")[1]))
+    if (e.target.id.split("-")[0] === "btnComprar") {
+        buyGames(parseInt(e.target.id.split("-")[1]))
+    }
 })
 
 async function buyGames(id) {
@@ -59,6 +62,32 @@ async function buyGames(id) {
     })).json()
     console.log(response)
     loadGames()
+}
+
+async function getUserType(idSession) {
+    return await (await fetch(url + "/users/user_type?id=" + idSession)).json()
+}
+
+function calculateValue(op) {
+    let disc = 0
+    switch (op) {
+        case 0:
+            disc = 0.05
+            break
+        case 2:
+            disc = 0.1
+            break
+        case 3:
+            disc = 0.15
+            break
+        case 4:
+            disc = 0.2
+            break
+        default:
+            disc = 0
+            break
+    }
+    return disc
 }
 
 loadGames()

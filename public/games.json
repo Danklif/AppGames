@@ -10,9 +10,9 @@
     {
         "id":"2",
         "name":"Sea of Thieves",
-        "launch_date":"2001-2-30",
+        "launch_date":"2001-2-10",
         "desc":"description",
-        "value":"0",
+        "value":"10000",
         "company":"default"
     },
     {
@@ -20,7 +20,7 @@
         "name":"Risk of Rain 2",
         "launch_date":"2001-2-30",
         "desc":"description",
-        "value":"0",
+        "value":"20000",
         "company":"default"
     },
     {

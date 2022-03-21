@@ -35,7 +35,6 @@ async function loadGames() {
             <td>${e.name}</td>
             <td>${e.launch_date}</td>
             <td>${e.desc}</td>
-            <td>${e.value}</td>
             <td>${e.company}</td>
         </tr>
         `
