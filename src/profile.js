@@ -14,15 +14,12 @@ async function loadGames() {
     })).json()
 }
 
-/*async function readJson() {
-    const response = await (await fetch("", {
-        method:"GET", 
-        mode:"cors",
-    })).json()
+async function readJson() {
+    const response = await (await fetch("https://danklif.github.io/AppGames/public/games.json")).json()
     const elementHtml = document.createElement("div")
-    elementHtml.innerHTML = `<p>${response.dependencies}</p>`
+    elementHtml.innerHTML = `<p>${response}</p>`
     document.body.append(elementHtml)
     console.log(response)
-}*/
+}
 
 loadGames()
