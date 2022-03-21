@@ -1,7 +1,5 @@
+import {url} from "./url.js"
 const btnLog = document.querySelector("#btnLog")
-const url = "https://709b-186-144-129-108.ngrok.io"
-
-//pene
 
 btnLog.addEventListener("click", (e) => {
     e.preventDefault()
@@ -15,7 +13,7 @@ btnLog.addEventListener("click", (e) => {
         name:inUser.value, 
         pass:inPass.value
     })
-    login(user)
+    signIn(user)
 })
 
 btnReg.addEventListener("click", (e) => {
@@ -30,10 +28,10 @@ btnReg.addEventListener("click", (e) => {
         name:inUser.value, 
         pass:inPass.value
     })
-    newUser(user)
+    signUp(user)
 })
 
-async function newUser(user) {
+async function signUp(user) {
     const response = await (await fetch(url+"/users/signup", {
         method:"POST", 
         headers:{"Content-Type":"application/json"},
@@ -43,7 +41,7 @@ async function newUser(user) {
     console.log(response)
 }
 
-async function login(user) {
+async function signIn(user) {
     const response = await (await fetch(url+"/users/signin", {
         method:"POST", 
         headers:{"Content-Type":"application/json"},
@@ -51,9 +49,12 @@ async function login(user) {
         body:user
     })).json()
     console.log(response)
+    if (parseInt(response.auth)) {
+        window.location.href = "profile.html?id=" + response.id;
+    }
 }
 
-async function readJson() {
+/*async function readJson() {
     const response = await (await fetch("https://raw.githubusercontent.com/facebook/react/main/package.json", {
         method:"GET", 
         mode:"cors",
@@ -62,6 +63,4 @@ async function readJson() {
     elementHtml.innerHTML = `<p>${response.dependencies}</p>`
     document.body.append(elementHtml)
     console.log(response)
-}
-
-//newUser()
+}*/
