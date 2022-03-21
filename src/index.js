@@ -53,14 +53,3 @@ async function signIn(user) {
         window.location.href = "profile.html?id=" + response.id;
     }
 }
-
-/*async function readJson() {
-    const response = await (await fetch("https://raw.githubusercontent.com/facebook/react/main/package.json", {
-        method:"GET", 
-        mode:"cors",
-    })).json()
-    const elementHtml = document.createElement("div")
-    elementHtml.innerHTML = `<p>${response.dependencies}</p>`
-    document.body.append(elementHtml)
-    console.log(response)
-}*/
