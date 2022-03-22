@@ -41,12 +41,12 @@ async function signUp(user) {
         mode:"cors",
         body:user
     })).json()
-    if (parseInt(response.auth) == 1) {
+    console.log(response)
+    if (parseInt(response.register) == 1) {
         alert("Usuario registrado")
         username.value = ""
         password.value = ""
     }
-    console.log(response)
 }
 
 async function signIn(user) {
