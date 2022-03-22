@@ -44,7 +44,7 @@ async function loadGames() {
             <td>${e.value - (e.value * discount)}</td>
             <td>${e.company}</td>
             <td>Descuento: ${discount * 100}%</td>
-            <td><button id="btnComprar-${e.id}">Comprar</button></td>
+            <td><button id="btnComprar-${e.id}" class="btn btn-warning">Comprar</button></td>
         </tr>
         `
     });
