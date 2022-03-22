@@ -33,12 +33,19 @@ btnReg.addEventListener("click", (e) => {
 })
 
 async function signUp(user) {
+    const username = document.querySelector("#sbUser").value
+    const password = document.querySelector("#sbPass").value
     const response = await (await fetch(url+"/users/signup", {
         method:"POST", 
         headers:{"Content-Type":"application/json"},
         mode:"cors",
         body:user
     })).json()
+    if (parseInt(response.auth) == 1) {
+        alert("Usuario registrado")
+        username.value = ""
+        password.value = ""
+    }
     console.log(response)
 }
 
