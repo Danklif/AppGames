@@ -33,23 +33,28 @@ btnReg.addEventListener("click", (e) => {
 })
 
 async function signUp(user) {
-    const username = document.querySelector("#sbUser").value
-    const password = document.querySelector("#sbPass").value
+    const userField = document.querySelector("#sbUser")
+    const passField = document.querySelector("#sbPass")
     const response = await (await fetch(url+"/users/signup", {
         method:"POST", 
         headers:{"Content-Type":"application/json"},
         mode:"cors",
         body:user
     })).json()
-    console.log(response)
+    console.log(response.register)
     if (parseInt(response.register) == 1) {
         alert("Usuario registrado")
-        username.value = ""
-        password.value = ""
+        userField.value = ""
+        passField.value = ""
+    } else {
+        alert("Error al registrar")
+        userField.value = ""
+        passField.value = ""
     }
 }
 
 async function signIn(user) {
+    const passField = document.querySelector("#inPass")
     const response = await (await fetch(url+"/users/signin", {
         method:"POST", 
         headers:{"Content-Type":"application/json"},
@@ -59,5 +64,8 @@ async function signIn(user) {
     console.log(response)
     if (parseInt(response.auth)) {
         window.location.href = "profile.html?id=" + response.id;
+    } else {
+        alert("Usuario o contraseña incorrecta. Verifique los datos e intente nuevamente.")
+        passField.value = ""
     }
 }
