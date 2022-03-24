@@ -28,7 +28,7 @@
         "name":"Halo Infinite",
         "launch_date":"2001-2-30",
         "desc":"description",
-        "value":"0",
+        "value":"60000",
         "company":"default"
     },
     {
@@ -36,7 +36,7 @@
         "name":"Fall Guys: Knockout",
         "launch_date":"2001-2-30",
         "desc":"description",
-        "value":"0",
+        "value":"30000",
         "company":"default"
     },
     {
@@ -44,7 +44,39 @@
         "name":"Among Us",
         "launch_date":"2001-2-30",
         "desc":"description",
-        "value":"0",
+        "value":"10000",
+        "company":"default"
+    },
+    {
+        "id":"7",
+        "name":"Slime Rancher 2",
+        "launch_date":"2001-2-30",
+        "desc":"description",
+        "value":"50000",
+        "company":"default"
+    },
+    {
+        "id":"8",
+        "name":"Stardew Valley",
+        "launch_date":"2001-2-30",
+        "desc":"description",
+        "value":"23000",
+        "company":"default"
+    },
+    {
+        "id":"9",
+        "name":"Red Dead Redemption 2",
+        "launch_date":"2001-2-30",
+        "desc":"description",
+        "value":"240000",
+        "company":"default"
+    },
+    {
+        "id":"10",
+        "name":"Cyberbug 2077",
+        "launch_date":"2001-2-30",
+        "desc":"description",
+        "value":"200000",
         "company":"default"
     }
 ]
