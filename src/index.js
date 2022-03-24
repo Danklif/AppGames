@@ -2,8 +2,6 @@ import {url} from "./url.js"
 const btnLog = document.querySelector("#btnLog")
 const btnReg = document.querySelector("#btnReg")
 
-//Comit
-
 btnLog.addEventListener("click", (e) => {
     e.preventDefault()
     const username = document.querySelector("#inUser").value
@@ -71,3 +69,5 @@ async function signIn(user) {
         passField.value = ""
     }
 }
+
+//uwu
