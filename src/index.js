@@ -42,13 +42,11 @@ async function signUp(user) {
         body:user
     })).json()
     console.log(response.register)
+    userField.value = ""
+    passField.value = ""
     if (parseInt(response.register) == 1) {
-        userField.value = ""
-        passField.value = ""
         alert("Usuario registrado")
     } else {
-        userField.value = ""
-        passField.value = ""
         alert("Error al registrar")
     }
 }
