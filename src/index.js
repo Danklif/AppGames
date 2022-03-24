@@ -18,6 +18,7 @@ btnLog.addEventListener("click", (e) => {
 })
 
 btnReg.addEventListener("click", (e) => {
+    btnReg.disable = true;
     e.preventDefault()
     const username = document.querySelector("#sbUser").value
     const password = document.querySelector("#sbPass").value
@@ -29,6 +30,7 @@ btnReg.addEventListener("click", (e) => {
         username:username, 
         password:password
     })
+    btnReg.disable = false
     signUp(user)
 })
 
