@@ -71,3 +71,17 @@ async function signIn(user) {
         passField.value = ""
     }
 }
+
+async function status() {
+    const bdAlert = document.querySelector("#bdAlert")
+    try {
+        await fetch(url+"/")
+        bdAlert.textContent = "La base de datos se encuentra en línea."
+        bdAlert.classList.add("alert-success")
+    } catch {
+        bdAlert.textContent = "La base de datos se encuentra fuera de servicio."
+        bdAlert.classList.add("alert-danger")
+    }
+}
+
+status()

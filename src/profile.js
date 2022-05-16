@@ -3,6 +3,7 @@ const btnShop = document.querySelector("#btnShop")
 const btnLogout = document.querySelector("#btnLogout")
 const tableGames = document.querySelector("#tableGames")
 const idSession = parseInt(window.location.href.split("=")[1])
+let allGames = {}
 
 btnShop.addEventListener("click", (e) => {
     e.preventDefault()
@@ -15,7 +16,6 @@ btnLogout.addEventListener("click", (e) => {
 })
 
 async function loadGames() {
-    const allGames = await (await fetch("https://danklif.github.io/AppGames/public/games.json")).json()
     const ownGames = await (await fetch(url + "/users/ownedgames?id_user=" + idSession, {mode:"cors"})).json()
 
     const gameList = allGames.filter(game => {
@@ -41,4 +41,13 @@ async function loadGames() {
     tableGames.innerHTML = template
 }
 
+async function loadJson() {
+    try {
+        allGames = await (await fetch("https://danklif.github.io/AppGames/public/games.json")).json()
+    } catch {
+        alert("Error al cargar los juegos. Compruebe su conexión a internet o intente de nuevo más tarde.")
+    }
+}
+
+loadJson()
 loadGames()

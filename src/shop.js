@@ -3,8 +3,9 @@ const btnProf = document.querySelector("#btnProf")
 const btnLogout = document.querySelector("#btnLogout")
 const tableGames = document.querySelector("#tableGames")
 const idSession = parseInt(window.location.href.split("=")[1])
-const maxPolicy = 1
+const maxPolicy = 10
 let allDiscounts = {}
+let allGames = {}
 
 btnProf.addEventListener("click", (e) => {
     e.preventDefault()
@@ -18,12 +19,11 @@ btnLogout.addEventListener("click", (e) => {
 
 tableGames.addEventListener("click", (e) => {
     if (e.target.id.split("-")[0] === "btnComprar") {
-        buyGame(idSession, parseInt(e.target.id.split("-")[1], document.querySelector(`#val-${e.target.id.split("-")[1]}`), getDate()))
+        buyGame(idSession, parseInt(e.target.id.split("-")[1]), document.querySelector(`#val-${e.target.id.split("-")[1]}`).textContent, getDate())
     }
 })
 
 async function loadGames() {
-    const allGames = await (await fetch("https://danklif.github.io/AppGames/public/games.json")).json()
     const ownGames = await (await fetch(url + "/users/ownedgames?id_user=" + idSession, {mode:"cors"})).json()
 
     const gameList = allGames.filter(game => {
@@ -36,10 +36,10 @@ async function loadGames() {
     let discount = 0
 
     gameList.forEach(e => {
-        discount = getDiscountPolicy(Math.floor(Math.random() * (maxPolicy - 1)) + 1)
+        discount = allDiscounts[Math.floor(Math.random() * (maxPolicy - 1)) + 1].value
         template += 
         `
-        <tr>
+        <tr id="row-${e.id}">
             <td>${e.name}</td>
             <td>${e.launch_date}</td>
             <td>${e.desc}</td>
@@ -55,6 +55,7 @@ async function loadGames() {
 }
 
 async function buyGame(id_user, id_game, value, date) {
+    document.querySelector(`#row-${id_game}`).remove()
     const game = JSON.stringify({id_user, id_game, value, date})
     const response = await (await fetch(url+"/users/buy_games", {
         method:"POST", 
@@ -66,24 +67,19 @@ async function buyGame(id_user, id_game, value, date) {
     loadGames()
 }
 
-function getDiscountPolicy(policy) {
-    const valDiscounts = allDiscounts.filter(element => {
-        return element.policy = policy
-    })
-
-    console.log(parseFloat(valDiscounts[0].value))
-
-    return parseFloat(valDiscounts[0].value)
-}
-
 function getDate() {
     const date = new Date()
     return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()
 }
 
-async function loadDiscounts() {
-    allDiscounts = await (await fetch("https://danklif.github.io/AppGames/public/discounts.json")).json()
+async function loadJson() {
+    try {
+        allGames = await (await fetch("https://danklif.github.io/AppGames/public/games.json")).json()
+        allDiscounts = await (await fetch("https://danklif.github.io/AppGames/public/discounts.json")).json()
+    } catch {
+        alert("Error al cargar los juegos. Compruebe su conexión a internet o intente de nuevo más tarde.")
+    }
 }
 
+loadJson()
 loadGames()
-loadDiscounts()
