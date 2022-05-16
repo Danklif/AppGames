@@ -4,6 +4,7 @@ const btnLogout = document.querySelector("#btnLogout")
 const tableGames = document.querySelector("#tableGames")
 const idSession = parseInt(window.location.href.split("=")[1])
 const maxPolicy = 1
+let allDiscounts = {}
 
 btnProf.addEventListener("click", (e) => {
     e.preventDefault()
@@ -32,9 +33,10 @@ async function loadGames() {
     })
 
     let template = ``
-    let discount = await getDiscountPolicy(Math.floor(Math.random() * (maxPolicy - 1)) + 1)
+    let discount = 0
 
     gameList.forEach(e => {
+        discount = getDiscountPolicy(Math.floor(Math.random() * (maxPolicy - 1)) + 1)
         template += 
         `
         <tr>
@@ -64,9 +66,7 @@ async function buyGame(id_user, id_game, value, date) {
     loadGames()
 }
 
-async function getDiscountPolicy(policy) {
-    const allDiscounts = await (await fetch("https://danklif.github.io/AppGames/public/discounts.json")).json()
-
+function getDiscountPolicy(policy) {
     const valDiscounts = allDiscounts.filter(element => {
         return element.policy = policy
     })
@@ -81,4 +81,9 @@ function getDate() {
     return date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()
 }
 
+async function loadDiscounts() {
+    allDiscounts = await (await fetch("https://danklif.github.io/AppGames/public/discounts.json")).json()
+}
+
 loadGames()
+loadDiscounts()
