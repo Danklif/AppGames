@@ -32,10 +32,9 @@ async function loadGames() {
     })
 
     let template = ``
-    let discount = 0
+    let discount = await getDiscountPolicy(Math.floor(Math.random() * (maxPolicy - 1)) + 1)
 
     gameList.forEach(e => {
-        discount = getDiscountPolicy(1)
         template += 
         `
         <tr>
@@ -72,9 +71,9 @@ async function getDiscountPolicy(policy) {
         return element.policy = policy
     })
 
-    console.log(valDiscounts)
+    console.log(parseFloat(valDiscounts[0].value))
 
-    return parseInt(valDiscounts.value)
+    return parseFloat(valDiscounts[0].value)
 }
 
 function getDate() {

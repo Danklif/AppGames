@@ -3,5 +3,50 @@
         "policy":"1",
         "value":"0.1",
         "desc":"Desc"
+    },
+    {
+        "policy":"2",
+        "value":"0.2",
+        "desc":"Desc"
+    },
+    {
+        "policy":"3",
+        "value":"0.3",
+        "desc":"Desc"
+    },
+    {
+        "policy":"4",
+        "value":"0.4",
+        "desc":"Desc"
+    },
+    {
+        "policy":"5",
+        "value":"0.5",
+        "desc":"Desc"
+    },
+    {
+        "policy":"6",
+        "value":"0.6",
+        "desc":"Desc"
+    },
+    {
+        "policy":"7",
+        "value":"0.7",
+        "desc":"Desc"
+    },
+    {
+        "policy":"8",
+        "value":"0.8",
+        "desc":"Desc"
+    },
+    {
+        "policy":"9",
+        "value":"0.9",
+        "desc":"Desc"
+    },
+    {
+        "policy":"10",
+        "value":"1",
+        "desc":"Desc"
     }
 ]
