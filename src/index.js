@@ -21,13 +21,15 @@ btnReg.addEventListener("click", (e) => {
     e.preventDefault()
     const username = document.querySelector("#sbUser").value
     const password = document.querySelector("#sbPass").value
-    if (!inUser || !inPass) {
+    const email = document.querySelector("#sbEmail").value
+    if (!sbUser.value || !sbPass.value || !sbEmail.value) {
         alert("Los valores están vacíos")
         return
     }
     const user = JSON.stringify({
         username:username, 
-        password:password
+        password:password,
+        email:email
     })
     signUp(user)
 })
@@ -35,6 +37,7 @@ btnReg.addEventListener("click", (e) => {
 async function signUp(user) {
     const userField = document.querySelector("#sbUser")
     const passField = document.querySelector("#sbPass")
+    const emailField = document.querySelector("#sbEmail")
     const response = await (await fetch(url+"/users/signup", {
         method:"POST", 
         headers:{"Content-Type":"application/json"},
@@ -44,6 +47,7 @@ async function signUp(user) {
     console.log(response.register)
     userField.value = ""
     passField.value = ""
+    emailField.value = ""
     if (parseInt(response.register) == 1) {
         alert("Usuario registrado")
     } else {
